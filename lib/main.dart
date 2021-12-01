@@ -3,9 +3,11 @@ import 'sections/home.dart';
 import 'sections/info.dart';
 import 'sections/maps.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return MyAppState();
@@ -14,11 +16,12 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   int currentView = 0;
-  final views = [const Home(), const Info(), const Map()];
+  final views = [const Info(), const Home(), const Map()];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

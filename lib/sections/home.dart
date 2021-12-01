@@ -10,8 +10,27 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text('Home'),
+    return Column(
+      children: const [
+        Align(
+          alignment: Alignment.topCenter,
+        ),
+        Text(
+          'Points: 0000',
+          textAlign: TextAlign.start,
+          style: TextStyle(fontSize: 30),
+        ),
+        Text(
+          'Class: D',
+          textAlign: TextAlign.start,
+          style: TextStyle(fontSize: 30),
+        ),
+        Text(
+          'Keep trying',
+          textAlign: TextAlign.start,
+          style: TextStyle(fontSize: 20),
+        ),
+      ],
     );
   }
 }
