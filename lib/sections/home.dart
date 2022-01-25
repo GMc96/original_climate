@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
         ),
         body: views[currentView],
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: deepGreen,
           currentIndex: currentView,
           onTap: (int index) {
             setState(() {
@@ -39,18 +40,28 @@ class _HomeState extends State<Home> {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.info),
-              label: 'Info',
-            ),
+                icon: Icon(
+                  Icons.info,
+                  color: primaryColor,
+                ),
+                label: 'Info',
+                backgroundColor: secondaryColor),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
+                icon: Icon(
+                  Icons.home,
+                  color: primaryColor,
+                ),
+                label: 'Home',
+                backgroundColor: secondaryColor),
             BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
-            ),
+                icon: Icon(
+                  Icons.map,
+                  color: primaryColor,
+                ),
+                label: 'Map',
+                backgroundColor: secondaryColor),
           ],
+          selectedItemColor: secondaryColor,
         ),
       ),
     );
@@ -62,60 +73,97 @@ class UserHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+
     return Center(
         child: Column(
-      children: const [
-        Text(
+      children: [
+        const Text(
           'Points: 0000',
           textAlign: TextAlign.start,
-          style: TextStyle(fontSize: 30, color: Colors.white),
+          style: TextStyle(
+              fontSize: 30, color: primaryColor, fontWeight: FontWeight.bold),
         ),
-        Text(
+        const Text(
           'Class: D',
           textAlign: TextAlign.start,
-          style: TextStyle(fontSize: 30, color: Colors.white),
+          style: TextStyle(
+              fontSize: 30, color: primaryColor, fontWeight: FontWeight.bold),
         ),
-        Text(
+        const Text(
           'Keep trying',
           textAlign: TextAlign.start,
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(
+              fontSize: 20, color: primaryColor, fontWeight: FontWeight.bold),
+        ),
+        TextButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Calculate Points'),
+                    content: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          const Text(
+                            'Electricity',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                                hintText: 'kg of CO2 emissions'),
+                            // The validator receives the text that the user has entered.
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 30),
+                          const Text(
+                            'Garbage',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                                hintText: 'Electricity bill usage'),
+                            // The validator receives the text that the user has entered.
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Validate returns true if the form is valid, or false otherwise.
+                              if (_formKey.currentState!.validate()) {
+                                // If the form is valid, display a snackbar. In the real world,
+                                // you'd often call a server or save the information in a database.
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Processing Data')),
+                                );
+                              }
+                            },
+                            child: const Text('Submit'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          },
+          child: const Text("Calculate Points"),
+          style: TextButton.styleFrom(
+            primary: primaryColor,
+          ),
         ),
       ],
     ));
   }
 }
-
-// class Home extends StatelessWidget {
-//   const Home({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     User user = const User('John', 'Doe', 1000, 'B');
-
-//     MaterialApp(
-//         home: Scaffold(
-//             appBar: AppBar(
-//               title: Text(user.firstName),
-//             ),
-//             body: Center(
-//                 child: Column(
-//               children: const [
-//                 Text(
-//                   'Points: 0000',
-//                   textAlign: TextAlign.start,
-//                   style: TextStyle(fontSize: 30, color: Colors.white),
-//                 ),
-//                 Text(
-//                   'Class: D',
-//                   textAlign: TextAlign.start,
-//                   style: TextStyle(fontSize: 30, color: Colors.white),
-//                 ),
-//                 Text(
-//                   'Keep trying',
-//                   textAlign: TextAlign.start,
-//                   style: TextStyle(fontSize: 20, color: Colors.white),
-//                 ),
-//               ],
-//             ))));
-//   }
-// }
