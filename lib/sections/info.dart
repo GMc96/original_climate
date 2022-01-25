@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:original_climate/theme.dart';
 
 class Info extends StatelessWidget {
   const Info({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class Info extends StatelessWidget {
               },
               child: const Text('Climate Change'),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  primary: primaryColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   textStyle: const TextStyle(
@@ -91,7 +92,7 @@ class Info extends StatelessWidget {
               },
               child: const Text('Recycling'),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  primary: primaryColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   textStyle: const TextStyle(
@@ -134,7 +135,7 @@ class Info extends StatelessWidget {
               },
               child: const Text('Transport'),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  primary: primaryColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   textStyle: const TextStyle(
@@ -177,7 +178,7 @@ class Info extends StatelessWidget {
               },
               child: const Text('Food Waste'),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  primary: primaryColor,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   textStyle: const TextStyle(
