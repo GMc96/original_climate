@@ -56,3 +56,27 @@ int _garbage_monthly(int recycling, int waste, int compost) {
 
   return garbagePoints;
 }
+
+List<String> _getUserClass(int userPoints) {
+  String userClass = '';
+  String userMessage = '';
+  List<String> userClassAndMessage = <String>[];
+
+  if (userPoints >= 400) {
+    userClass = 'A';
+    userMessage = 'Your doing great work';
+  } else if (userPoints >= 300) {
+    userClass = 'B';
+    userMessage = 'Your doing good work';
+  } else if (userPoints >= 200) {
+    userClass = 'C';
+    userMessage = 'Keep it up';
+  } else {
+    userClass = 'D';
+    userMessage = 'Keep trying';
+  }
+  userClassAndMessage.add(userClass);
+  userClassAndMessage.add(userMessage);
+
+  return userClassAndMessage;
+}

@@ -3,6 +3,10 @@
    <application
         android:label="original_climate"
         android:icon="@mipmap/ic_launcher">
+
+   <meta-data android:name="com.google.android.geo.API_KEY"  
+             android:value="AIzaSyB0FNzmqnZgpz8Qcn1OxVqHORsOms1G14I"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

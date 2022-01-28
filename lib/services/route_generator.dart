@@ -11,7 +11,7 @@ class RouteGenerator {
       case '/info':
         return MaterialPageRoute(builder: (_) => const Info());
       case '/map':
-        return MaterialPageRoute(builder: (_) => const Maps());
+        return MaterialPageRoute(builder: (_) => const MapScreen());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
