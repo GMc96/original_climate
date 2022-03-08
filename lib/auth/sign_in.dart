@@ -50,7 +50,7 @@ class Sign_In extends StatelessWidget {
             onPressed: () {},
             child: const Text("Forgot Password"),
             style: TextButton.styleFrom(
-              primary: primaryColor,
+              primary: tertiaryColor,
             ),
           ),
           ElevatedButton(
@@ -58,7 +58,7 @@ class Sign_In extends StatelessWidget {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (c) => const Home()));
               },
-              style: ElevatedButton.styleFrom(primary: primaryColor),
+              style: ElevatedButton.styleFrom(primary: tertiaryColor),
               child: const Text("Login"))
         ])));
   }

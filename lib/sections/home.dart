@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:original_climate/models/user.dart';
 import 'package:original_climate/sections/info.dart';
-import 'package:original_climate/sections/maps.dart';
+import 'package:original_climate/sections/planner.dart';
+import 'package:original_climate/services/calc_points.dart';
 
 import '../theme.dart';
 
@@ -13,12 +14,17 @@ class Home extends StatefulWidget {
 }
 
 User user = User('John', 'Doe', 300, 'B', 'Your doing good work');
+int kwhConverted = 0;
 
 class _HomeState extends State<Home> {
   int currentView = 0;
-  final views = [const Info(), const UserHome(), const MapScreen()];
+  final views = [const Info(), const UserHome(), const Planner()];
   final _formKey = GlobalKey<FormState>();
-  final myFormController = TextEditingController();
+  final electricityController = TextEditingController();
+  final recyclingController = TextEditingController();
+  final wasteController = TextEditingController();
+  final compostController = TextEditingController();
+  final kwhController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +34,16 @@ class _HomeState extends State<Home> {
           primaryColor: primaryColor, scaffoldBackgroundColor: secondaryColor),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: deepGreen,
-          title: Text(user.firstName + ' ' + user.lastName),
+          backgroundColor: primaryColor,
+          //title: Text(),
           actions: <Widget>[
             IconButton(
                 onPressed: () {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
+                        return SingleChildScrollView(
+                            child: AlertDialog(
                           title: const Text('Calculate Points'),
                           content: Form(
                             key: _formKey,
@@ -47,7 +54,7 @@ class _HomeState extends State<Home> {
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 TextFormField(
-                                  controller: myFormController,
+                                  controller: electricityController,
                                   decoration: const InputDecoration(
                                       hintText: 'kg of CO2 emissions'),
 
@@ -65,6 +72,7 @@ class _HomeState extends State<Home> {
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 TextFormField(
+                                  controller: recyclingController,
                                   decoration: const InputDecoration(
                                       hintText: 'Recycling bin weight'),
                                   // The validator receives the text that the user has entered.
@@ -76,6 +84,7 @@ class _HomeState extends State<Home> {
                                   },
                                 ),
                                 TextFormField(
+                                  controller: wasteController,
                                   decoration: const InputDecoration(
                                       hintText: 'Waste bin weight'),
                                   // The validator receives the text that the user has entered.
@@ -87,6 +96,7 @@ class _HomeState extends State<Home> {
                                   },
                                 ),
                                 TextFormField(
+                                  controller: compostController,
                                   decoration: const InputDecoration(
                                       hintText: 'Compost bin weight'),
                                   // The validator receives the text that the user has entered.
@@ -103,28 +113,59 @@ class _HomeState extends State<Home> {
                                     if (_formKey.currentState!.validate()) {
                                       // If the form is valid, display a snackbar. In the real world,
                                       // you'd often call a server or save the information in a database.
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            content: Text('Processing Data')),
-                                      );
+                                      user.points = calculatePoints(
+                                          int.parse(electricityController.text),
+                                          int.parse(recyclingController.text),
+                                          int.parse(wasteController.text),
+                                          int.parse(compostController.text));
+                                      List<String> userInfo =
+                                          getUserClass(user.points);
+
+                                      user.userClass = userInfo.first;
+                                      user.userMessage = userInfo.last;
                                     }
                                   },
                                   child: const Text('Submit'),
                                 ),
+                                const SizedBox(height: 30),
+                                const Text(
+                                  'Convert kWh to kg of CO2',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                TextFormField(
+                                  controller: kwhController,
+                                  decoration:
+                                      const InputDecoration(hintText: 'kWh'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    kwhConverted = calculateKWHtoKG(
+                                        int.parse(kwhController.text));
+                                  },
+                                  child: const Text('Calculate'),
+                                ),
+                                Text(kwhConverted.toString()),
                               ],
                             ),
                           ),
-                        );
+                        ));
                       });
                 },
-                icon: const Icon(Icons.calculate)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.account_circle))
+                icon: const Icon(
+                  Icons.calculate,
+                  color: deepGreen,
+                )),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.account_circle,
+                  color: deepGreen,
+                ))
           ],
         ),
         body: views[currentView],
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: deepGreen,
+          backgroundColor: primaryColor,
           currentIndex: currentView,
           onTap: (int index) {
             setState(() {
@@ -135,26 +176,26 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.info,
-                  color: primaryColor,
+                  color: deepGreen,
                 ),
                 label: 'Info',
-                backgroundColor: secondaryColor),
+                backgroundColor: Colors.red),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
-                  color: primaryColor,
+                  color: deepGreen,
                 ),
                 label: 'Home',
                 backgroundColor: secondaryColor),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.map,
-                  color: primaryColor,
+                  Icons.task,
+                  color: deepGreen,
                 ),
-                label: 'Map',
+                label: 'Planner',
                 backgroundColor: secondaryColor),
           ],
-          selectedItemColor: secondaryColor,
+          selectedItemColor: deepGreen,
         ),
       ),
     );
@@ -166,7 +207,8 @@ class UserHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(
+        child: Center(
       child: Column(
         children: [
           Text(
@@ -200,7 +242,8 @@ class UserHome extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          users[index].firstName +
+                          ' ' +
+                              users[index].firstName +
                               ' ' +
                               users[index].lastName +
                               ': ' +
@@ -208,7 +251,7 @@ class UserHome extends StatelessWidget {
                           style: const TextStyle(fontSize: 25),
                         ),
                         Text(
-                          users[index].userClass,
+                          users[index].userClass + ' ',
                           style: const TextStyle(
                             fontSize: 25,
                           ),
@@ -220,7 +263,7 @@ class UserHome extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 }
 

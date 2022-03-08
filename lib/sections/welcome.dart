@@ -37,7 +37,7 @@ class Welcome extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (c) => const Sign_In()));
                   },
-                  style: ElevatedButton.styleFrom(primary: primaryColor),
+                  style: ElevatedButton.styleFrom(primary: tertiaryColor),
                   child: const Text(
                     "LOGIN",
                     style: TextStyle(color: Colors.white),
@@ -54,7 +54,7 @@ class Welcome extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (c) => const Sign_Up()));
                   },
-                  style: ElevatedButton.styleFrom(primary: primaryColor),
+                  style: ElevatedButton.styleFrom(primary: tertiaryColor),
                   child: const Text(
                     "REGISTER",
                     style: TextStyle(color: Colors.white),

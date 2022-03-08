@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-int _electricity(double carbonEmissions) {
+int calculatePoints(int electricity, int recycling, int waste, int compost) {
+  int electricityPoints = _electricity(electricity);
+  int garbagePoints = _garbage_biannually(recycling, waste, compost);
+  int userPoints = electricityPoints + garbagePoints;
+  return userPoints;
+}
+
+int _electricity(int carbonEmissions) {
   // Feb - Apr (64 days) 647 kg of carbon emissions
   // May - June 120 kg of carbon emissions
 
@@ -11,11 +18,11 @@ int _electricity(double carbonEmissions) {
 
   int electricityPoints;
   if (carbonEmissions > 250) {
-    electricityPoints = 100;
-  } else if (carbonEmissions > 150) {
     electricityPoints = 200;
-  } else {
+  } else if (carbonEmissions > 150) {
     electricityPoints = 300;
+  } else {
+    electricityPoints = 400;
   }
 
   return electricityPoints;
@@ -24,16 +31,22 @@ int _electricity(double carbonEmissions) {
 int _garbage_biannually(int recycling, int waste, int compost) {
   int garbagePoints = 0;
 
-  if (recycling > 450) {
-    garbagePoints = garbagePoints - 300;
+  if (recycling >= 250) {
+    garbagePoints += garbagePoints - 100;
+  } else if (recycling >= 150) {
+    garbagePoints += garbagePoints - 50;
   }
 
-  if (waste > 450) {
-    garbagePoints = garbagePoints - 300;
+  if (waste >= 450) {
+    garbagePoints += garbagePoints - 200;
+  } else if (waste >= 250) {
+    garbagePoints += garbagePoints - 100;
   }
 
-  if (compost > 350) {
-    garbagePoints = garbagePoints - 300;
+  if (compost >= 50) {
+    garbagePoints += garbagePoints - 100;
+  } else if (compost >= 35) {
+    garbagePoints += garbagePoints - 50;
   }
 
   return garbagePoints;
@@ -57,7 +70,7 @@ int _garbage_monthly(int recycling, int waste, int compost) {
   return garbagePoints;
 }
 
-List<String> _getUserClass(int userPoints) {
+List<String> getUserClass(int userPoints) {
   String userClass = '';
   String userMessage = '';
   List<String> userClassAndMessage = <String>[];
@@ -79,4 +92,15 @@ List<String> _getUserClass(int userPoints) {
   userClassAndMessage.add(userMessage);
 
   return userClassAndMessage;
+}
+
+int calculateKWHtoKG(int kwh) {
+  int CO2kg;
+  double CO2kgWork;
+
+  CO2kgWork = kwh / 0.721 * 0.168;
+
+  CO2kg = CO2kgWork.round();
+
+  return CO2kg;
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:original_climate/sections/home.dart';
 import 'package:original_climate/sections/info.dart';
-import 'package:original_climate/sections/maps.dart';
+import 'package:original_climate/sections/planner.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,7 +11,7 @@ class RouteGenerator {
       case '/info':
         return MaterialPageRoute(builder: (_) => const Info());
       case '/map':
-        return MaterialPageRoute(builder: (_) => const MapScreen());
+        return MaterialPageRoute(builder: (_) => const Planner());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
