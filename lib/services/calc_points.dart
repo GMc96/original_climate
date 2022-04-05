@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 int calculatePoints(int electricity, int recycling, int waste, int compost) {
   int electricityPoints = _electricity(electricity);
-  int garbagePoints = _garbage_biannually(recycling, waste, compost);
+  int garbagePoints = garbageBiannually(recycling, waste, compost);
   int userPoints = electricityPoints + garbagePoints;
   return userPoints;
 }
@@ -28,7 +26,7 @@ int _electricity(int carbonEmissions) {
   return electricityPoints;
 }
 
-int _garbage_biannually(int recycling, int waste, int compost) {
+int garbageBiannually(int recycling, int waste, int compost) {
   int garbagePoints = 0;
 
   if (recycling >= 250) {
@@ -52,7 +50,7 @@ int _garbage_biannually(int recycling, int waste, int compost) {
   return garbagePoints;
 }
 
-int _garbage_monthly(int recycling, int waste, int compost) {
+int garbageMonthly(int recycling, int waste, int compost) {
   int garbagePoints = 0;
 
   if (recycling > 75) {
@@ -95,12 +93,12 @@ List<String> getUserClass(int userPoints) {
 }
 
 int calculateKWHtoKG(int kwh) {
-  int CO2kg;
-  double CO2kgWork;
+  int co2kg;
+  double co2kgWork;
 
-  CO2kgWork = kwh / 0.721 * 0.168;
+  co2kgWork = kwh / 0.721 * 0.168;
 
-  CO2kg = CO2kgWork.round();
+  co2kg = co2kgWork.round();
 
-  return CO2kg;
+  return co2kg;
 }

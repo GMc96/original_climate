@@ -35,7 +35,7 @@ class Welcome extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (c) => const Sign_In()));
+                        MaterialPageRoute(builder: (c) => const SignIn()));
                   },
                   style: ElevatedButton.styleFrom(primary: tertiaryColor),
                   child: const Text(
@@ -52,7 +52,7 @@ class Welcome extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (c) => const Sign_Up()));
+                        MaterialPageRoute(builder: (c) => const SignUp()));
                   },
                   style: ElevatedButton.styleFrom(primary: tertiaryColor),
                   child: const Text(

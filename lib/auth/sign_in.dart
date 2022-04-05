@@ -3,8 +3,8 @@ import 'package:original_climate/sections/home.dart';
 
 import '../theme.dart';
 
-class Sign_In extends StatelessWidget {
-  const Sign_In({Key? key}) : super(key: key);
+class SignIn extends StatelessWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
