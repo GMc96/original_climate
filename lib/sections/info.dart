@@ -160,11 +160,33 @@ class Info extends StatelessWidget {
                                           TextSpan(
                                               text:
                                                   'The level of CO2 being produced by the planet up until the industrial revolution was manageable. But after this period when humans started burning more and more fossil fuels such as oil and coal to power their homes, cars and factories, the levels in CO2 began rising dramatically and there was more CO2 being produced than could be handled. CO2 is naturally stored in forests, swamps, and other natural areas. These natural areas have stopped the atmosphere filling up with this gas and trapping heat in the planet but with deforestation there is not enough trees to hold the amount of CO2 being produced. Deforestation is cutting down trees to clear land for agricultural reasons or to use the wood for fuel, manufacturing or for construction according to National Geographic Society [6]. While CO2 is the biggest factor, there are other contributing factors that also play a role in climate change. \n'),
+                                          TextSpan(
+                                            style: TextStyle(fontSize: 20),
+                                            text: 'Methane \n',
+                                          ),
+                                          TextSpan(
+                                              text:
+                                                  'Methane is another type of gas that is that is produced by humans and livestock. In the past 70 years the global population has tripled and with that the need for more livestock. With more livestock and more people wanting livestock for products there is more methane being produced. \n'),
+                                          TextSpan(
+                                            style: TextStyle(fontSize: 20),
+                                            text: 'The Cement Industry \n',
+                                          ),
+                                          TextSpan(
+                                              text:
+                                                  'Another large producer of CO2 is the cement industry which makes up 7% of the worlds CO2 emissions [1]. When cement is made, CO2 is emitted from heating up the materials needed to make cement and from the energy needed to heat these materials. The concrete industry is so widespread the amount of CO2 produced from it is massive and it continues to grow because we use it for building all over the world. \n'),
+                                          TextSpan(
+                                            style: TextStyle(fontSize: 20),
+                                            text: 'Consequences \n',
+                                          ),
+                                          TextSpan(
+                                              text:
+                                                  'Before the industrial revolution the Earth was about 1 degree cooler than it is now, and this might not sound like a lot but a small change in temperature can have a dramatic change on climate. If global warming reaches 2 degrees, there would be severe impacts on people and on nature. This rise in temperatures would leave a third of the world’s population exposed to severe heat which would lead to heat related health problems. This temperature rise would also destroy almost all warm water coral reefs and would melt the ice sheet in both Greenland and Antarctica. This rise in sea levels would have devastating effects causing destructive erosion, destroying agricultural soil with salt and lost habitat for plants and animals. Higher sea levels also bring more dangerous weather conditions such as more hurricanes and typhoons that bring more rain leading to more powerful storm surges. If temperatures stay below 1.5 degrees, there would still be serious problems for all of us, but they would be less severe. There would be lower risks of flooding and lower dangers to economic growth and species at risk of going extinct. There would be less threats to human health from air pollution, disease, and extreme heat. From this it is clear that every fraction of a degree matters, and we all need to work together now if we ever want a chance to keep from these devastating effects happening. \n'),
                                         ])),
                                     const Spacer(),
                                   ],
                                 ),
                               ),
+                              actions: [],
                             );
                           });
                     },

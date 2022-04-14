@@ -24,8 +24,30 @@ class SignUp extends StatelessWidget {
             ),
           ),
           const Padding(
-            //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
             padding: EdgeInsets.symmetric(horizontal: 15),
+            //padding: EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'First Name',
+              ),
+            ),
+          ),
+          const Padding(
+            //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
+            padding:
+                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Last Name',
+              ),
+            ),
+          ),
+          const Padding(
+            //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
+            padding:
+                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
             child: TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -38,11 +60,22 @@ class SignUp extends StatelessWidget {
                 EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
             //padding: EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
-              obscureText: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                   hintText: 'Enter secure password'),
+            ),
+          ),
+          const Padding(
+            padding:
+                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+            //padding: EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Number of people living in house',
+                  hintText:
+                      'We will use this to calculate your power consumption points'),
             ),
           ),
           ElevatedButton(
