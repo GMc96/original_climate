@@ -147,22 +147,21 @@ class Info extends StatelessWidget {
                                                 .style,
                                             children: const <TextSpan>[
                                           TextSpan(
+                                            style: TextStyle(fontSize: 20),
+                                            text: 'The Greenhouse Effect \n',
+                                          ),
+                                          TextSpan(
                                               text:
-                                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices massa at pulvinar placerat. Sed dolor metus, auctor eget pharetra ac, volutpat nec lectus. Nam semper pretium turpis, non imperdiet mauris faucibus vel. Vivamus vitae facilisis eros, quis varius est. Nam dictum mauris diam, pharetra dignissim felis rhoncus vel. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam vel nisi sit amet orci tempor varius. Aliquam efficitur felis scelerisque porttitor facilisis. Nullam sodales posuere augue sed laoreet. Aenean vitae consectetur est.'),
+                                                  'Climate change is a consequence of the greenhouse effect and occurs when the heat from the sun gets trapped within the Earth’s atmosphere due to high levels of CO2 and other gases. When these gases trap the heat, the temperature of the planet starts to rise. Therefore, it is known as the greenhouse effect because the gas trapping the heat is acting like a greenhouse. \n'),
+                                          TextSpan(
+                                            style: TextStyle(fontSize: 20),
+                                            text: 'CO2 \n',
+                                          ),
+                                          TextSpan(
+                                              text:
+                                                  'The level of CO2 being produced by the planet up until the industrial revolution was manageable. But after this period when humans started burning more and more fossil fuels such as oil and coal to power their homes, cars and factories, the levels in CO2 began rising dramatically and there was more CO2 being produced than could be handled. CO2 is naturally stored in forests, swamps, and other natural areas. These natural areas have stopped the atmosphere filling up with this gas and trapping heat in the planet but with deforestation there is not enough trees to hold the amount of CO2 being produced. Deforestation is cutting down trees to clear land for agricultural reasons or to use the wood for fuel, manufacturing or for construction according to National Geographic Society [6]. While CO2 is the biggest factor, there are other contributing factors that also play a role in climate change. \n'),
                                         ])),
                                     const Spacer(),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: DefaultTextStyle.of(context)
-                                                .style,
-                                            children: const <TextSpan>[
-                                          TextSpan(
-                                              text:
-                                                  'Vivamus euismod ante eu tortor dignissim, at convallis ipsum laoreet. Sed rutrum, tellus vitae pretium condimentum, nunc nisl mattis neque, in egestas purus erat at felis. Proin mollis laoreet ipsum, eu scelerisque dolor convallis a. Nullam ut massa dui. Fusce id elit consequat, sodales mauris ac, tincidunt felis. Vestibulum suscipit sapien et tellus dapibus accumsan. Integer molestie enim at nunc aliquet lacinia. Cras sit amet libero ut leo accumsan consequat sed id erat. Integer id erat id arcu molestie dapibus nec nec ante. Etiam mollis finibus iaculis. Quisque in nisi rutrum, interdum neque sed, rhoncus nisl.'),
-                                          TextSpan(
-                                              text:
-                                                  'Aliquam ornare risus vitae ex varius, non varius risus pellentesque. Donec posuere feugiat metus, eget ullamcorper lorem egestas vel. Donec at scelerisque dolor. Integer posuere varius enim, efficitur viverra orci varius quis. Pellentesque blandit elit ante, non pretium elit convallis ut. Etiam convallis sem vel orci blandit, at mattis ipsum imperdiet. Vivamus gravida arcu ut velit lobortis mattis. Mauris viverra pretium tortor at elementum. Nullam lacus tellus, accumsan in sodales in, egestas in neque. Cras vitae diam sed tellus ultricies sollicitudin a eu leo. Nam eget sollicitudin lorem, mattis malesuada magna. Sed neque nisi, rutrum vitae lorem id, mollis blandit odio. Sed ut tortor lacus. Praesent rutrum euismod massa vel sollicitudin. Donec sollicitudin venenatis felis. Nam vel odio eget lectus euismod interdum.'),
-                                        ])),
                                   ],
                                 ),
                               ),

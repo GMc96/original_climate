@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:original_climate/models/full_user.dart';
-import 'package:original_climate/models/signed_in_user.dart';
 import 'package:original_climate/sections/home.dart';
 import '../theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
