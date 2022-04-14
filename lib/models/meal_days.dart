@@ -1,6 +1,6 @@
 class Mealday {
   String day;
-  String meal;
+  String? meal;
 
   Mealday(this.day, this.meal);
 }

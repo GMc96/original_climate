@@ -10,10 +10,17 @@ class Planner extends StatefulWidget {
 }
 
 class _PlannerState extends State<Planner> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
+    List<String> meals = ['Choose Meal', 'Steak', 'Fish', 'Salad'];
+
+    String? mondayDropdownValue = 'Choose Meal';
+    String tuesdayDropdownValue = 'Choose Meal';
+    String wednesdayDropdownValue = 'Choose Meal';
+    String thursdayDropdownValue = 'Choose Meal';
+    String fridayDropdownValue = 'Choose Meal';
+    String saturdayDropdownValue = 'Choose Meal';
+    String sundayDropdownValue = 'Choose Meal';
     return SingleChildScrollView(
         child: Column(
       children: [
@@ -28,23 +35,18 @@ class _PlannerState extends State<Planner> {
                   children: [
                     for (var day in days)
                       SizedBox(
-                        child: InkWell(
-                          onTap: () {
-                            debugPrint("Working");
-                          },
-                          child: Card(
-                            child: Column(children: [
-                              Text(
-                                day.day,
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                              Text(
-                                day.meal,
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                            ]),
-                            color: primaryColor,
-                          ),
+                        child: Card(
+                          child: Column(children: [
+                            Text(
+                              day.day,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              day.meal.toString(),
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ]),
+                          color: primaryColor,
                         ),
                         width: 300,
                       ),
@@ -60,44 +62,181 @@ class _PlannerState extends State<Planner> {
                         title: const Text("Choose Meals"),
                         content: Column(
                           children: [
-                            Form(
-                              key: _formKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  TextFormField(
-                                    decoration: const InputDecoration(
-                                      hintText: 'Enter your email',
-                                    ),
-                                    validator: (String? value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        // Validate will return true if the form is valid, or false if
-                                        // the form is invalid.
-                                        if (_formKey.currentState!.validate()) {
-                                          // Process data.
-                                        }
-                                      },
-                                      child: const Text('Submit'),
-                                    ),
-                                  ),
-                                ],
+                            const Text("Monday"),
+                            DropdownButton<String>(
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
                               ),
-                            )
+                              onChanged: (String? newValue) => setState(
+                                  () => mondayDropdownValue = newValue),
+                              value: mondayDropdownValue.toString(),
+                              // onChanged: (String? newValue) {
+                              //   setState(() {
+                              //     mondayDropdownValue = newValue!;
+                              //   });
+                              // },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            const Text("Tuesday"),
+                            DropdownButton<String>(
+                              value: tuesdayDropdownValue,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  tuesdayDropdownValue = newValue!;
+                                });
+                              },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            const Text("wednesday"),
+                            DropdownButton<String>(
+                              value: wednesdayDropdownValue,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  wednesdayDropdownValue = newValue!;
+                                });
+                              },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            const Text("Thursday"),
+                            DropdownButton<String>(
+                              value: thursdayDropdownValue,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  thursdayDropdownValue = newValue!;
+                                });
+                              },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            const Text("Friday"),
+                            DropdownButton<String>(
+                              value: fridayDropdownValue,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  fridayDropdownValue = newValue!;
+                                });
+                              },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            const Text("Saturday"),
+                            DropdownButton<String>(
+                              value: saturdayDropdownValue,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  saturdayDropdownValue = newValue!;
+                                });
+                              },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            const Text("Sunday"),
+                            DropdownButton<String>(
+                              value: sundayDropdownValue,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: tertiaryColor),
+                              underline: Container(
+                                height: 2,
+                                color: tertiaryColor,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  sundayDropdownValue = newValue!;
+                                });
+                              },
+                              items: meals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
                           ],
                         ),
                         actions: [
                           ElevatedButton(
                               onPressed: () {
+                                days[0].meal = mondayDropdownValue;
+                                days[1].meal = tuesdayDropdownValue;
+                                days[2].meal = wednesdayDropdownValue;
+                                days[3].meal = thursdayDropdownValue;
+                                days[4].meal = fridayDropdownValue;
+                                days[5].meal = saturdayDropdownValue;
+                                days[6].meal = sundayDropdownValue;
                                 Navigator.of(context).pop();
                               },
                               child: const Text("Save")),

@@ -7,10 +7,10 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const Home());
+        return MaterialPageRoute(builder: (_) => const UserHome());
       case '/info':
         return MaterialPageRoute(builder: (_) => const Info());
-      case '/map':
+      case '/planner':
         return MaterialPageRoute(builder: (_) => const Planner());
       default:
         // If there is no such named route in the switch statement, e.g. /third

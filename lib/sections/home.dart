@@ -1,29 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:original_climate/models/user.dart';
+import 'package:original_climate/models/full_user.dart';
 import 'package:original_climate/sections/info.dart';
 import 'package:original_climate/sections/planner.dart';
+import 'package:original_climate/auth/sign_in.dart';
 import 'package:original_climate/services/calc_points.dart';
 
 import 'package:fl_chart/fl_chart.dart';
 import '../theme.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
+  final User userCredentials;
+  const Home(this.userCredentials, {Key? key}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
 
-User user = User('John', 'Doe', 300, 'B', 'Your doing good work',
+FullUser fulluser = FullUser('John', 'Doe', 300, 'B', 'Your doing good work',
     [100, 110, 150, 130, 170, 160, 250, 280]);
 
 List<String> months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
 int kwhConverted = 0;
 
-List<User> users = sortusers();
+List<FullUser> fullusers = sortusers();
 
 class _HomeState extends State<Home> {
-  int currentView = 0;
+  int currentView = 1;
   final views = [const Info(), const UserHome(), const Planner()];
   final _formKey = GlobalKey<FormState>();
   final electricityController = TextEditingController();
@@ -41,7 +43,8 @@ class _HomeState extends State<Home> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
-          //title: Text(),
+          title:
+              Text("Welcome " + widget.userCredentials.displayName.toString()),
           actions: <Widget>[
             IconButton(
                 onPressed: () {
@@ -119,16 +122,16 @@ class _HomeState extends State<Home> {
                                     if (_formKey.currentState!.validate()) {
                                       // If the form is valid, display a snackbar. In the real world,
                                       // you'd often call a server or save the information in a database.
-                                      user.points = calculatePoints(
+                                      fulluser.points = calculatePoints(
                                           int.parse(electricityController.text),
                                           int.parse(recyclingController.text),
                                           int.parse(wasteController.text),
                                           int.parse(compostController.text));
                                       List<String> userInfo =
-                                          getUserClass(user.points);
+                                          getUserClass(fulluser.points);
 
-                                      user.userClass = userInfo.first;
-                                      user.userMessage = userInfo.last;
+                                      fulluser.userClass = userInfo.first;
+                                      fulluser.userMessage = userInfo.last;
                                     }
                                   },
                                   child: const Text('Submit'),
@@ -231,19 +234,19 @@ class _UserHomeState extends State<UserHome> {
       child: Column(
         children: [
           Text(
-            user.points.toString(),
+            fulluser.points.toString(),
             textAlign: TextAlign.start,
             style: const TextStyle(
                 fontSize: 30, color: deepGreen, fontWeight: FontWeight.bold),
           ),
           Text(
-            user.userClass,
+            fulluser.userClass,
             textAlign: TextAlign.start,
             style: const TextStyle(
                 fontSize: 30, color: deepGreen, fontWeight: FontWeight.bold),
           ),
           Text(
-            user.userMessage,
+            fulluser.userMessage,
             textAlign: TextAlign.start,
             style: const TextStyle(
                 fontSize: 20, color: deepGreen, fontWeight: FontWeight.bold),
