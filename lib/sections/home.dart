@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:original_climate/models/full_user.dart';
@@ -10,16 +12,17 @@ import 'package:fl_chart/fl_chart.dart';
 import '../theme.dart';
 
 class Home extends StatefulWidget {
-  final User userCredentials;
+  //When i implemented firebase auth i used this user credential variable
+  final User? userCredentials;
+  //for the presentation i can use this user
   const Home(this.userCredentials, {Key? key}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
 
 FullUser fulluser = FullUser('John', 'Doe', 300, 'B', 'Your doing good work',
-    [100, 110, 150, 130, 170, 160, 250, 280]);
+    [100, 110, 150, 130, 170, 160, 250, 280], [true, true, false], []);
 
-List<String> months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
 int kwhConverted = 0;
 
 List<FullUser> fullusers = sortusers();
@@ -43,8 +46,11 @@ class _HomeState extends State<Home> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
-          title:
-              Text("Welcome " + widget.userCredentials.displayName.toString()),
+          title: Text(
+            //"Welcome " + widget.userCredentials.email.toString(),
+            "Welcom " + fulluser.firstName,
+            style: const TextStyle(fontSize: 18, color: deepGreen),
+          ),
           actions: <Widget>[
             IconButton(
                 onPressed: () {
@@ -252,7 +258,7 @@ class _UserHomeState extends State<UserHome> {
                 fontSize: 20, color: deepGreen, fontWeight: FontWeight.bold),
           ),
           SizedBox(
-            width: 400,
+            width: double.infinity,
             height: 200,
             child: LineChart(LineChartData(
                 borderData: FlBorderData(
@@ -282,11 +288,15 @@ class _UserHomeState extends State<UserHome> {
                       getTitles: (value) {
                         switch (value.toInt()) {
                           case 0:
-                            return 'Sep 19';
+                            return 'Jan';
+                          case 2:
+                            return 'Feb';
                           case 4:
-                            return 'Oct 10';
+                            return 'Mar';
+                          case 6:
+                            return 'Apr';
                           case 8:
-                            return 'Nov 16';
+                            return 'May';
                         }
                         return '';
                       },
@@ -306,29 +316,39 @@ class _UserHomeState extends State<UserHome> {
                       switch (value.toInt()) {
                         case 0:
                           return '0';
-                        case 2:
+                        case 1:
                           return '50';
-                        case 4:
+                        case 2:
                           return '100';
-                        case 6:
+                        case 3:
                           return '150';
+                        case 4:
+                          return '200';
+                        case 5:
+                          return '250';
+                        case 6:
+                          return '300';
+                        case 7:
+                          return '350';
+                        case 8:
+                          return '400';
                       }
                       return '';
                     },
                     margin: 12,
                   ),
                 ),
-                maxX: 8,
-                maxY: 8,
+                maxX: 9,
+                maxY: 9,
                 minY: 0,
                 minX: 0,
                 lineBarsData: [
                   LineChartBarData(
                       spots: [
                         const FlSpot(0, 0),
-                        const FlSpot(5, 5),
-                        const FlSpot(7, 6),
-                        const FlSpot(8, 4),
+                        const FlSpot(2, 2),
+                        const FlSpot(4, 5),
+                        const FlSpot(7.5, 4),
                       ],
                       isCurved: true,
                       colors: [Colors.black12, Colors.white70, Colors.white],
@@ -341,7 +361,7 @@ class _UserHomeState extends State<UserHome> {
                 ])),
           ),
           SizedBox(
-              height: 300,
+              height: 410,
               child: ListView.builder(
                   itemCount: users.length,
                   itemBuilder: (context, index) {

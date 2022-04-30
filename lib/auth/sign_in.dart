@@ -40,7 +40,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   //Login function
-  static Future<User?> loginUsingEmailPassword(
+  Future<User?> loginUsingEmailPassword(
       {required String email,
       required String password,
       required BuildContext context}) async {
@@ -126,12 +126,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => Home(user)));
                 }
-
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (c) => const Home()));
               },
               style: ElevatedButton.styleFrom(primary: tertiaryColor),
-              child: const Text("Login"))
+              child: const Text("Login")),
+          ElevatedButton(
+              onPressed: () {
+                User? user;
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (c) => Home(user)));
+              },
+              style: ElevatedButton.styleFrom(primary: tertiaryColor),
+              child: const Text("Straight to app"))
         ])));
   }
 }
